@@ -214,12 +214,6 @@ class LuxMedSniper:
                     self.config['gi']['message_template'].format(**appointment), None).show()
             )
 
-def work(config):
-    try:
-        luxmedSniper = LuxMedSniper(configuration_file=config)
-        luxmedSniper.check()
-    except Exception as s:
-        log.error(s)
 
 class LuxmedSniperException(Exception):
     pass
@@ -237,8 +231,11 @@ if __name__ == "__main__":
         type=int, help="Delay in fetching updates [s]", default=1800
     )
     args = parser.parse_args()
-    work(args.config)
-    schedule.every(args.delay).seconds.do(work, args.config)
+
+    luxmedSniper = LuxMedSniper(configuration_file=args.config)
+    luxmedSniper.check()
+
+    schedule.every(args.delay).seconds.do(luxmedSniper.check)
     while True:
         schedule.run_pending()
         time.sleep(1)

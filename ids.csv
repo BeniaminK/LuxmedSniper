@@ -1,21 +1,40 @@
-Miasto	CityId
-Bydgoszcz	10
-Elbląg	63
-Gorzów Wielkopolski	60
-Katowice	17
-Kraków	3
-Leżajsk	62
-Łódź	4
-Olsztyn	20
-Opole	21
-Poznań	8
-Rzeszów	74
-Szczecin	24
-Toruń	73
-Trójmiasto	45
-Tychy	25
-Warszawa	1
-Wrocław	5
++-----------+---------------------+
+|   CityId  | Miasto              |
+|-----------+---------------------|
+|         1 | Warszawa            |
+|         3 | Kraków              |
+|         4 | Łódź                |
+|         5 | Wrocław             |
+|         6 | Dębica              |
+|         8 | Poznań              |
+|        10 | Bydgoszcz           |
+|        12 | Bielsk Podlaski     |
+|        17 | Katowice            |
+|        20 | Olsztyn             |
+|        21 | Opole               |
+|        24 | Szczecin            |
+|        43 | Konin               |
+|        45 | Trójmiasto          |
+|        49 | Lublin              |
+|        60 | Gorzów Wielkopolski |
+|        63 | Elbląg              |
+|        70 | Białystok           |
+|        71 | Kostrzyn nad Odrą   |
+|        73 | Toruń               |
+|        74 | Rzeszów             |
+|        80 | Mielec              |
+|        81 | Wałbrzych           |
+|        83 | Brzesko             |
+|        84 | Częstochowa         |
+|        85 | Kłobuck             |
+|        87 | Lubliniec           |
+|        88 | Inowrocław          |
+|        89 | Łomża               |
+|        99 | Nowa Sól            |
+|       100 | Bielsko-Biała       |
+|       101 | Kalisz              |
+|       112 | Nowy Sącz           |
++-----------+---------------------+
 
 Placowka_Wroclaw	ClinicId
 Fabryczna	2100
@@ -27,47 +46,462 @@ Szewska 6
 Dominikański	12
 Świdnicka 1792
 
-Specjalista	ServiceId
-Konsultacja alergologa	4387
-Konsultacja chirurga dzieci	4394
-Konsultacja chirurga naczyniowego	4406
-Konsultacja chirurga ogólnego	4412
-Konsultacja chirurga onkologa	4418
-Konsultacja chirurga plastyka	4424
-Konsultacja dermatologa	4448
-Konsultacja diabetologa	4453
-Konsultacja endokrynologa	4461
-Konsultacja flebologiczna	6748
-Konsultacja gastroenterologa	4468
-Konsultacja geriatry	8286
-Konsultacja ginekologa	4480
-Konsultacja ginekologa - endokrynologa	4473
-Konsultacja hematologa	4486
-Konsultacja hepatologa	4491
-Konsultacja immunologa	7138
-Konsultacja internisty	4502
-Konsultacja kardiologa	4510
-Konsultacja laryngologa	4522
-Konsultacja lekarza rodzinnego	4528
-Konsultacja nefrologa	4534
-Konsultacja neurochirurga	4540
-Konsultacja neurologa	4549
-Konsultacja neurologa - dzieci	7056
-Konsultacja okulisty	4565
-Konsultacja okulisty - dzieci	7681
-Konsultacja onkologa	4572
-Konsultacja ortopedy	4436
-Konsultacja ortopedy - dzieci	7678
-Konsultacja pediatry - szczepienia dzieci do lat 6	8752
-Konsultacja pediatry - w gabinecie dzieci chorych	7409
-Konsultacja pediatry - w gabinecie dzieci zdrowych	7408
-Konsultacja pediatry - w gabinecie dzieci zdrowych - bilans	9190
-Konsultacja proktologa	4430
-Konsultacja pulmonologa	4598
-Konsultacja reumatologa	4604
-Konsultacja urologa	4614
-Kwalifikacja - do szczepienia dzieci powyżej 6 r.ż.	4106
-Umówienie wizyty na scaling (usuwanie złogów)	9756
-Umówienie wizyty u chirurga stomatologa	8904
-Umówienie wizyty u stomatologa	6621
-Umówienie wizyty u stomatologa dziecięcego	8914
++--------------+---------------------------------------------------------------------------------------------+
+|   ServiceId  | Specjalista                                                                                 |
+|--------------+---------------------------------------------------------------------------------------------|
+|         3393 | Rtg kości łódeczkowatej - prawej                                                            |
+|         3396 | Rtg palca/palców stopy AP + bok/skos - prawej                                               |
+|         3808 | Gastroskopia                                                                                |
+|         3816 | Kolonoskopia                                                                                |
+|         4279 | Rtg noso - gardła                                                                           |
+|         4281 | Rtg punktowe zdjęcie zęba                                                                   |
+|         4282 | Rtg teleradiogram - cefalometria cyfrowa                                                    |
+|         4284 | Rtg zatok przynosowych                                                                      |
+|         4285 | Rtg nosa  boczne                                                                            |
+|         4286 | Rtg czaszki - PA + bok                                                                      |
+|         4288 | Rtg czynnościowe stawów skroniowo  żuchwowych                                               |
+|         4290 | Rtg kręgosłupa szyjnego                                                                     |
+|         4292 | Rtg czynnościowe kręgosłupa szyjnego                                                        |
+|         4294 | Rtg kręgosłupa lędźwiowo  krzyżowego AP + Bok                                               |
+|         4295 | Rtg kręgosłupa AP na stojąco - (skolioza)                                                   |
+|         4296 | Rtg kręgosłupa lędźwiowo  krzyżowego  skosy                                                 |
+|         4297 | Rtg czynnościowe kręgosłupa lędźwiowego                                                     |
+|         4298 | Rtg kości krzyżowej i guzicznej                                                             |
+|         4299 | Rtg kręgosłupa piersiowego                                                                  |
+|         4300 | Mammografia                                                                                 |
+|         4304 | Rtg żeber (1 strona) w 2 skosach                                                            |
+|         4305 | Rtg mostka/boczne klatki piersiowej                                                         |
+|         4306 | Rtg obojczyka - prawego                                                                     |
+|         4307 | Rtg łopatki - prawej                                                                        |
+|         4311 | Rtg klatki piersiowej                                                                       |
+|         4321 | Rtg jamy brzusznej - na leżąco                                                              |
+|         4322 | Rtg barku / ramienia AP - prawego                                                           |
+|         4324 | Rtg barku / ramienia - osiowe - prawego                                                     |
+|         4326 | Rtg łokcia / przedramienia - prawego AP + bok                                               |
+|         4327 | Rtg ręki - wiek kostny                                                                      |
+|         4329 | Rtg nadgarstka/dłoni PA + bok/skos - lewego                                                 |
+|         4330 | Rtg obu nadgarstków/dłoni PA + bok/skos                                                     |
+|         4331 | Rtg palec/palce PA + bok / skos - prawej ręki                                               |
+|         4332 | Rtg miednicy i stawów biodrowych                                                            |
+|         4333 | Rtg stawu biodrowego AP - prawego                                                           |
+|         4334 | Rtg stawu biodrowego osiowe - prawego                                                       |
+|         4335 | Rtg kości udowej AP + bok - prawej                                                          |
+|         4337 | Rtg stawu kolanowego AP + bok - prawego                                                     |
+|         4339 | Rtg rzepki osiowe - prawej                                                                  |
+|         4341 | Rtg podudzia (goleni) AP + bok - prawego                                                    |
+|         4343 | Rtg stopy AP + bok/skos - prawej                                                            |
+|         4345 | Rtg stawu skokowo - goleniowego AP + bok - prawego                                          |
+|         4350 | USG stawu barkowego                                                                         |
+|         4351 | USG stawu łokciowego                                                                        |
+|         4353 | USG stawów biodrowych                                                                       |
+|         4354 | USG stawu kolanowego                                                                        |
+|         4355 | USG stawu skokowego                                                                         |
+|         4356 | USG więzadeł, mięśni, drobnych stawów                                                       |
+|         4357 | USG tkanki podskórnej (tłuszczaki, włókniaki, przepuklina brzuszna etc.)                    |
+|         4359 | Echokardiografia - USG serca                                                                |
+|         4360 | USG tarczycy                                                                                |
+|         4361 | USG piersi                                                                                  |
+|         4363 | USG narządów moszny (jąder)                                                                 |
+|         4364 | USG ślinianek                                                                               |
+|         4367 | USG jamy brzusznej                                                                          |
+|         4368 | USG układu moczowego                                                                        |
+|         4376 | USG ginekologiczne - transwaginalne                                                         |
+|         4387 | Konsultacja alergologa                                                                      |
+|         4394 | Konsultacja chirurga dzieci                                                                 |
+|         4406 | Konsultacja chirurga naczyniowego                                                           |
+|         4412 | Konsultacja chirurga ogólnego                                                               |
+|         4418 | Konsultacja chirurga onkologa                                                               |
+|         4424 | Konsultacja chirurga plastyka                                                               |
+|         4430 | Konsultacja proktologa                                                                      |
+|         4436 | Konsultacja ortopedy                                                                        |
+|         4448 | Konsultacja dermatologa                                                                     |
+|         4453 | Konsultacja diabetologa                                                                     |
+|         4461 | Konsultacja endokrynologa                                                                   |
+|         4468 | Konsultacja gastroenterologa                                                                |
+|         4473 | Konsultacja ginekologa - endokrynologa                                                      |
+|         4480 | Konsultacja ginekologa                                                                      |
+|         4486 | Konsultacja hematologa                                                                      |
+|         4491 | Konsultacja hepatologiczna                                                                  |
+|         4498 | Konsultacja lekarza chorób zakaźnych                                                        |
+|         4502 | Konsultacja internistyczna                                                                  |
+|         4510 | Konsultacja kardiologa                                                                      |
+|         4522 | Konsultacja laryngologa                                                                     |
+|         4532 | Konsultacja logopedy - wizyta pierwszorazowa                                                |
+|         4534 | Konsultacja nefrologa                                                                       |
+|         4540 | Konsultacja neurochirurga                                                                   |
+|         4549 | Konsultacja neurologa                                                                       |
+|         4565 | Konsultacja okulisty                                                                        |
+|         4572 | Konsultacja onkologa                                                                        |
+|         4585 | Konsultacja psychiatry - kolejna wizyta                                                     |
+|         4596 | Konsultacja psychologa - kolejna wizyta                                                     |
+|         4598 | Konsultacja pulmonologa                                                                     |
+|         4604 | Konsultacja reumatologa                                                                     |
+|         4611 | Konsultacja seksuologa - kolejna wizyta                                                     |
+|         4614 | Konsultacja urologa                                                                         |
+|         4655 | Założenie Holtera EKG - w gabinecie                                                         |
+|         4656 | Założenie Holtera RR - w gabinecie                                                          |
+|         4695 | Badanie EKG - spoczynkowe                                                                   |
+|         4700 | Spirometria                                                                                 |
+|         4780 | Komputerowe pole widzenia                                                                   |
+|         4781 | USG gałek ocznych i oczodołów                                                               |
+|         4786 | Audiometria impedancyjna - z tympanometrią i oceną odruchów z mięśnia strzemiączkowego (AI) |
+|         5788 | Konsultacja alergologa - dzieci                                                             |
+|         5817 | Konsultacja dermatologa - dzieci                                                            |
+|         5844 | Konsultacja dietetyka - kolejna wizyta                                                      |
+|         5854 | Konsultacja laryngologa - dzieci                                                            |
+|         5857 | Audiometr standardowy                                                                       |
+|         5870 | Konsultacja logopedy - kolejna wizyta                                                       |
+|         6014 | Rtg kręgosłupa szyjnego - skosy                                                             |
+|         6100 | Kwalifikacja - do szczepienia dorośli (inne niż p/grypie)                                   |
+|         6109 | Rtg klatki piersiowej - i bok                                                               |
+|         6110 | Rtg obojczyka - lewego                                                                      |
+|         6111 | Rtg łopatki - lewej                                                                         |
+|         6112 | Rtg klatki piersiowej - tarczycy, tchawicy                                                  |
+|         6114 | Rtg barku / ramienia AP - lewego                                                            |
+|         6115 | Rtg jamy brzusznej - na stojąco                                                             |
+|         6117 | Rtg barku / ramienia - osiowe - lewego                                                      |
+|         6118 | Rtg barku / ramienia - osiowe - obu                                                         |
+|         6119 | Rtg łokcia / przedramienia - lewego AP + bok                                                |
+|         6120 | Rtg łokcia / przedramienia - obu AP + bok                                                   |
+|         6121 | Rtg ręki - PA obu                                                                           |
+|         6122 | Rtg nadgarstka/dłoni PA + bok/skos - prawego                                                |
+|         6123 | Rtg nadgarstka/dłoni PA + bok/skos - obu                                                    |
+|         6124 | Rtg kości łódeczkowatej - lewej                                                             |
+|         6125 | Rtg palec/palce PA + bok / skos - lewej ręki                                                |
+|         6126 | Rtg palec/palce PA + bok / skos - obu rąk                                                   |
+|         6127 | Rtg czaszki - półosiowe wg Orleya                                                           |
+|         6128 | Rtg czaszki - styczne                                                                       |
+|         6132 | Rtg stawu biodrowego AP - lewego                                                            |
+|         6133 | Rtg stawu biodrowego osiowe - lewego                                                        |
+|         6134 | Rtg kości udowej AP + bok - lewej                                                           |
+|         6135 | Rtg stawu kolanowego AP + bok - lewego                                                      |
+|         6136 | Rtg stawu kolanowego AP + bok - obu                                                         |
+|         6137 | Rtg rzepki osiowe - lewej                                                                   |
+|         6138 | Rtg rzepki osiowe - obu                                                                     |
+|         6139 | Rtg rzepki osiowe - obu w 2 ustawieniach                                                    |
+|         6140 | Rtg rzepki osiowe - obu w 3 ustawieniach                                                    |
+|         6141 | Rtg podudzia (goleni) AP + bok - lewego                                                     |
+|         6142 | Rtg podudzia (goleni) AP + bok - obu                                                        |
+|         6143 | Rtg stawu skokowo - goleniowego AP + bok - lewego                                           |
+|         6144 | Rtg stawu skokowo - goleniowego AP + bok - obu                                              |
+|         6145 | Rtg stopy AP + bok/skos - lewej                                                             |
+|         6146 | Rtg stopy AP + bok/skos - obu                                                               |
+|         6147 | Rtg palca/palców stopy AP + bok/skos - lewej                                                |
+|         6179 | USG / doppler - tętnic szyjnych i kręgowych                                                 |
+|         6180 | USG / doppler - tętnic nerkowych                                                            |
+|         6181 | USG / doppler - naczyń wątroby (ocena krążenia wrotnego)                                    |
+|         6182 | USG układu moczowego - i TRUS (transrektalne)                                               |
+|         6184 | USG przezciemiączkowe                                                                       |
+|         6185 | USG transrektalne - prostaty                                                                |
+|         6273 | Próba wysiłkowa                                                                             |
+|         6274 | USG ciąży - rozszerzone badanie (4 D)                                                       |
+|         6279 | Rektoskopia                                                                                 |
+|         6281 | Soczewki kontaktowe - dobór                                                                 |
+|         6298 | Cytologia szyjki macicy                                                                     |
+|         6301 | Badanie EEG - (dzieci)                                                                      |
+|         6303 | Założenie Holtera EVENT                                                                     |
+|         6597 | Badanie EEG                                                                                 |
+|         6611 | Konsultacja urologa - dzieci                                                                |
+|         6621 | Umówienie wizyty u stomatologa                                                              |
+|         6687 | USG ginekologiczne - przez powłoki brzuszne                                                 |
+|         6748 | Konsultacja flebologiczna                                                                   |
+|         6749 | Konsultacja psychiatry - dzieci - kolejna wizyta                                            |
+|         6799 | Konsultacja specjalisty medycyny estetycznej                                                |
+|         6817 | Umówienie wizyty u higienistki stomatologicznej                                             |
+|         7056 | Konsultacja neurologa - dzieci                                                              |
+|         7138 | Konsultacja immunologa                                                                      |
+|         7147 | Założenie Holtera EKG - z 12 odprowadzeniami                                                |
+|         7223 | Konsultacja hematologa - dzieci                                                             |
+|         7228 | Rtg kręgosłupa AP na stojąco - + bok (skolioza)                                             |
+|         7289 | Kwalifikacja - do szczepienia p/grypie                                                      |
+|         7296 | USG / doppler - aorty brzusznej i tętnic biodrowych                                         |
+|         7297 | Rtg przedramienia - prawego AP + bok                                                        |
+|         7298 | Rtg przedramienia - lewego AP + bok                                                         |
+|         7299 | Rtg przedramienia - obu przedramion AP + bok                                                |
+|         7318 | Konsultacja kardiologa - dzieci                                                             |
+|         7322 | Badanie KTG                                                                                 |
+|         7389 | MR - Rezonans magnetyczny - oczodołów                                                       |
+|         7390 | MR - Rezonans magnetyczny - twarzoczaszki                                                   |
+|         7391 | MR - Rezonans magnetyczny - szyi                                                            |
+|         7393 | MR - Rezonans magnetyczny - kręgosłupa piersiowego (Th)                                     |
+|         7395 | MR - Rezonans magnetyczny - klatki piersiowej                                               |
+|         7396 | MR - Rezonans magnetyczny - jamy brzusznej                                                  |
+|         7398 | MR - Rezonans magnetyczny - nadnerczy                                                       |
+|         7399 | MR - Rezonans magnetyczny - miednicy mniejszej                                              |
+|         7400 | MR - Rezonans magnetyczny - stawu barkowego                                                 |
+|         7401 | MR - Rezonans magnetyczny - stawu łokciowego                                                |
+|         7402 | MR - Rezonans magnetyczny - nadgarstka                                                      |
+|         7403 | MR - Rezonans magnetyczny - stawu biodrowego                                                |
+|         7405 | MR - Rezonans magnetyczny - stawu skokowego                                                 |
+|         7406 | MR - Rezonans magnetyczny - stopy                                                           |
+|         7408 | Konsultacja pediatryczna - w gabinecie dzieci zdrowych                                      |
+|         7409 | Konsultacja pediatryczna - w gabinecie dzieci chorych                                       |
+|         7633 | USG ciąży                                                                                   |
+|         7668 | MR - Rezonans magnetyczny - głowy                                                           |
+|         7669 | Konsultacja endokrynologa - dzieci                                                          |
+|         7670 | MR - Rezonans magnetyczny - stawu kolanowego                                                |
+|         7671 | MR - Rezonans magnetyczny - przysadki mózgowej                                              |
+|         7672 | MR - Rezonans magnetyczny - kręgosłupa szyjnego (C)                                         |
+|         7674 | MR - Rezonans magnetyczny - kręgosłupa lędźwiowo-krzyżowego (LS)                            |
+|         7675 | Konsultacja gastroenterologa - dzieci                                                       |
+|         7676 | Konsultacja ginekologa - dzieci                                                             |
+|         7678 | Konsultacja ortopedy - dzieci                                                               |
+|         7679 | MR - Rezonans magnetyczny - angio tętnic mózgowych                                          |
+|         7680 | MR - Rezonans magnetyczny - głowy i angio tętnic mózgowych                                  |
+|         7681 | Konsultacja okulisty - dzieci                                                               |
+|         7685 | Konsultacja psychologa - dzieci - kolejna wizyta                                            |
+|         7687 | Konsultacja pulmonologa - dzieci                                                            |
+|         7688 | Konsultacja reumatologa - dzieci                                                            |
+|         7696 | MR - Rezonans magnetyczny - stawu kolanowego z chrząstkogramem kolorowym                    |
+|         7697 | MR - Rezonans magnetyczny - stawów krzyżowo-biodrowych                                      |
+|         7699 | MR - Rezonans magnetyczny - podudzia                                                        |
+|         7700 | MR - Rezonans magnetyczny - ramienia                                                        |
+|         7701 | MR - Rezonans magnetyczny - ręki                                                            |
+|         7707 | MR - Rezonans magnetyczny - uda                                                             |
+|         7756 | Konsultacja okulisty - badanie dna oka                                                      |
+|         7955 | Echokardiografia - USG serca - dzieci                                                       |
+|         7956 | Densytometria - dexa - szyjka kości udowej                                                  |
+|         7957 | Densytometria - dexa - trzony kręgosłupa lędźwiowego                                        |
+|         7962 | USG / doppler - tętnic wewnątrzczaszkowych                                                  |
+|         7964 | USG prostaty przez powłoki brzuszne                                                         |
+|         7965 | USG nadgarstka                                                                              |
+|         7966 | USG stawów śródręcza i palców                                                               |
+|         7968 | USG ścięgna Achillesa                                                                       |
+|         7969 | USG krtani                                                                                  |
+|         7975 | Audiometr standardowy - audiometria słowna                                                  |
+|         7976 | Audiometr standardowy - audiometria nadprogowa                                              |
+|         8006 | Konsultacja hipertensjologiczna                                                             |
+|         8008 | Konsultacja nefrologa - dzieci                                                              |
+|         8098 | Densytometria - skład ciała pomiar - zawartość tkanki tłuszczowej, beztłuszczowej           |
+|         8099 | Densytometria - przedramię                                                                  |
+|         8100 | Densytometria - obie szyjki kości udowej - advanced hip assesment (AHA)                     |
+|         8101 | Densytometria - obie szyjki kości udowej                                                    |
+|         8102 | Densytometria - kręgosłup lędźwiowy + szyjka kości udowej AHA + cały szkielet               |
+|         8103 | Densytometria - kręgosłup lędźwiowy + szyjka kości udowej AHA                               |
+|         8104 | Densytometria - kręgosłup lędźwiowy + szyjka kości udowej + cały szkielet                   |
+|         8105 | Densytometria - kręgosłup lędźwiowy + szyjka kości udowej                                   |
+|         8106 | Densytometria - kręgosłup lędźwiowy + dwie szyjki kości udowej                              |
+|         8107 | Densytometria - kręgosłup lędźwiowy + 2 szyjki kości udowej AHA + caly szkielet             |
+|         8109 | Densytometria - kręgosłup lędźwiowy (ocena kości beleczkowej) - screening                   |
+|         8110 | Densytometria - kręg. lędźw. + 2 sz. k. udowej AHA + cały szkielet + skład ciała            |
+|         8111 | Densytometria - cały szkielet + skład ciała                                                 |
+|         8112 | Densytometria - całk. zawartość minerału kostnego w szkielecie (cały szkielet)              |
+|         8113 | Densytometria - kręgosłup lędźwiowy + 2 szyjki kości udowej + cały szkielet                 |
+|         8114 | Densytometria - kręgosłup lędźwiowy + 2 szyjki k. udowej AHA                                |
+|         8229 | Rtg czaszki - PA+bok+podstawa                                                               |
+|         8231 | Rtg czaszki - podstawa                                                                      |
+|         8233 | Rtg czaszki - kanały nerwów czaszkowych                                                     |
+|         8235 | Rtg czaszki - oczodoły                                                                      |
+|         8236 | Rtg czaszki - siodło tureckie                                                               |
+|         8237 | Rtg klatki piersiowej - bok z barytem                                                       |
+|         8259 | Rtg ręki - PA lewa                                                                          |
+|         8262 | Rtg ręki - PA prawa                                                                         |
+|         8264 | Rtg ręki - bok- lewa                                                                        |
+|         8265 | Rtg ręki - bok- prawa                                                                       |
+|         8273 | Konsultacja dietetyka - dzieci kolejna wizyta                                               |
+|         8274 | Konsultacja neurochirurga - dzieci                                                          |
+|         8275 | Konsultacja onkologa - dzieci                                                               |
+|         8277 | Konsultacja diabetologa - dzieci                                                            |
+|         8285 | Rtg szyi - bok                                                                              |
+|         8286 | Konsultacja geriatry                                                                        |
+|         8287 | Rtg żuchwy                                                                                  |
+|         8294 | Konsultacja fizjoterapeuty                                                                  |
+|         8299 | Rtg kości skroniowych - wg Schullera/ Steversa                                              |
+|         8300 | Rtg kości skroniowych - transorbitalne                                                      |
+|         8320 | MR - Rezonans magnetyczny - zatok                                                           |
+|         8341 | Konsultacja lekarza dyżurnego - Ortopeda                                                    |
+|         8423 | Konsultacja angiologa                                                                       |
+|         8426 | Konsultacja ginekologa - prowadzenie ciąży                                                  |
+|         8660 | Rtg stawu biodrowego AP - obu                                                               |
+|         8668 | Rtg klatki piersiowej - PA + bok z barytem                                                  |
+|         8670 | Rtg kręgosłupa szyjnego - bok                                                               |
+|         8671 | Rtg kręgosłupa szyjnego - bok + skosy (3 projekcje)                                         |
+|         8672 | Rtg barku (przez klatkę)                                                                    |
+|         8673 | Rtg barku AP + osiowe                                                                       |
+|         8674 | Rtg celowane kręgu                                                                          |
+|         8677 | Rtg kości śródstopia                                                                        |
+|         8682 | Rtg kręgosłupa lędźwiowego - AP + bok                                                       |
+|         8686 | Rtg kręgosłupa lędźwiowego - AP + bok + skos                                                |
+|         8689 | Rtg kręgosłupa lędźwiowego - bok                                                            |
+|         8718 | Rtg kręgosłupa piersiowego - skosy                                                          |
+|         8722 | Rtg kręgosłupa piersiowego - AP + bok                                                       |
+|         8724 | Rtg kręgosłupa piersiowego - AP + bok + skos                                                |
+|         8726 | Rtg kręgosłupa piersiowego - bok                                                            |
+|         8730 | Rtg mostka AP                                                                               |
+|         8736 | Rtg nadgarstka boczne - lewego                                                              |
+|         8738 | Rtg nadgarstka boczne - prawego                                                             |
+|         8740 | Rtg nadgarstka boczne - obu                                                                 |
+|         8804 | Rtg oczodołów - + boczne (2 projekcje)                                                      |
+|         8805 | Rtg pięty + osiowe                                                                          |
+|         8807 | Rtg pięty boczne                                                                            |
+|         8810 | Rtg stawów krzyżowo - biodrowych - skosy                                                    |
+|         8813 | Rtg stawów krzyżowo - biodrowych - PA                                                       |
+|         8815 | Rtg stawu kolanowego boczne                                                                 |
+|         8818 | Rtg stóp AP (porównawczo)                                                                   |
+|         8819 | Rtg twarzoczaszki                                                                           |
+|         8821 | Rtg uda + podudzia                                                                          |
+|         8822 | Rtg ząb obrotnika                                                                           |
+|         8874 | Rtg barku / ramienia AP - obu - zdjęcie porównawcze                                         |
+|         8875 | Rtg barku / ramienia AP - + bok prawego                                                     |
+|         8876 | Rtg barku / ramienia AP - + bok lewego                                                      |
+|         8877 | Rtg barku / ramienia AP - + bok obu - zdjęcie porównawcze                                   |
+|         8878 | Rtg krtani                                                                                  |
+|         8880 | Rtg krtani - tomogram                                                                       |
+|         8904 | Umówienie wizyty u chirurga stomatologa                                                     |
+|         8914 | Umówienie wizyty u stomatologa dziecięcego                                                  |
+|         8937 | Badanie EKG - spoczynkowe - dziecka                                                         |
+|         8999 | Pobranie krwi - i innych materiałów - na czczo                                              |
+|         9157 | Konsultacja psychiatry - dzieci - wizyta pierwszorazowa                                     |
+|         9158 | Konsultacja psychiatry - wizyta pierwszorazowa                                              |
+|         9159 | Konsultacja psychologa - dzieci - wizyta pierwszorazowa                                     |
+|         9160 | Konsultacja psychologa - wizyta pierwszorazowa                                              |
+|         9190 | Konsultacja pediatryczna - w gabinecie dzieci zdrowych - bilans                             |
+|         9201 | Pobranie krwi - i innych materiałów dzieci zdrowe                                           |
+|         9202 | Pobranie krwi - i innych materiałów dzieci chore                                            |
+|         9210 | USG ciąży - transwaginalne                                                                  |
+|         9345 | Rtg kręgosłupa szyjnego - AP + bok                                                          |
+|         9369 | USG węzłów chłonnych                                                                        |
+|         9432 | MR - Rezonans magnetyczny - przedramienia                                                   |
+|         9500 | Konsultacja ginekologa-onkologa                                                             |
+|         9785 | USG / doppler żył - kończyn dolnych                                                         |
+|         9786 | USG / doppler żył - kończyn górnych                                                         |
+|         9787 | USG / doppler tętnic - kończyn dolnych                                                      |
+|         9788 | USG / doppler tętnic - kończyn górnych                                                      |
+|        11019 | USG krwiaka pourazowego mięśni                                                              |
+|        11235 | Usługa położnej w gabinecie                                                                 |
+|        11284 | RTG stawu łokciowego                                                                        |
+|        11414 | Konsultacja chirurga onkologa - dzieci                                                      |
+|        11507 | Pobranie krwi - Test CoVID -19 przeciwciała IgG                                             |
+|        11541 | Rtg pantomogram - zębów                                                                     |
+|        11602 | Rtg ręki - PA + skos lewa                                                                   |
+|        11603 | Rtg ręki - PA + skos prawa                                                                  |
+|        11607 | RTG nadgarstka - PA + bok obu                                                               |
+|        11881 | Konsultacja dietetyka - wizyta pierwszorazowa                                               |
+|        12270 | Usługa kosmetyczna - konsultacja kosmetologa                                                |
+|        12338 | Konsultacja internistyczna - Centrum Leczenia Infekcji                                      |
+|        12515 | Konsultacja seksuologa - wizyta pierwszorazowa                                              |
+|        12572 | Konsultacja położnej - w placówce własnej LUX MED                                           |
+|        12574 | Konsultacja optometrysty - dobór szkieł okularowych                                         |
+|        12601 | Konsultacja immunologa - dzieci                                                             |
+|        12605 | PROFEMED - Wodorowy Test Oddechowy - SIBO/LAKTULOZA                                         |
+|        12606 | PROFEMED - Wodorowy Test Oddechowy - LAKTOZA                                                |
+|        12607 | PROFEMED - Wodorowy Test Oddechowy - FRUKTOZA                                               |
+|        12761 | USG ciąży - mnogiej                                                                         |
+|        12858 | PROFEMED - Wodorowy Test Oddechowy - GLUKOZA                                                |
+|        13040 | Rtg stawu kolanowego AP + bok - obu na stojąco                                              |
+|        13081 | USG / doppler żył - szyjnych                                                                |
+|        13083 | USG ciąży - 11-13 tydzień (+ 6 dni )                                                        |
+|        13084 | USG ciąży - 18-22 tydzień                                                                   |
+|        13085 | USG ciąży - mnogiej 11-13 tydzień (+ 6 dni )                                                |
+|        13086 | USG ciąży - mnogiej 18-22 tydzień                                                           |
+|        13169 | USG ciąży - przed 10 tygodniem                                                              |
+|        13170 | USG ciąży - 28-32 tydzień                                                                   |
+|        13171 | USG ciąży - mnogiej 28-32 tydzień                                                           |
+|        13215 | Konsultacja telefoniczna - Pielęgniarki                                                     |
+|        13397 | Konsultacja ortopedy - uraz                                                                 |
+|        13398 | Konsultacja ortopedy - dzieci uraz                                                          |
+|        13410 | Konsultacja telefoniczna - Internistyczna                                                   |
+|        13617 | Konsultacja psychiatry - porada receptowa                                                   |
+|        13621 | MR - Rezonans magnetyczny - perfuzja mózgowa (pełne badanie)                                |
+|        13638 | USG stawów biodrowych - dzieci                                                              |
+|        13639 | USG stawu biodrowego                                                                        |
+|        13668 | Konsultacja dietetyka - dzieci - pierwszorazowa                                             |
+|        13694 | Konsultacja telefoniczna - Psychologa kolejna wizyta                                        |
+|        13708 | Umówienie wizyty Invisalign                                                                 |
+|        13764 | Konsultacja telefoniczna - Alergologa                                                       |
+|        13766 | Konsultacja telefoniczna - Dermatologa                                                      |
+|        13767 | Konsultacja telefoniczna - Diabetologa                                                      |
+|        13768 | Konsultacja telefoniczna - Dietetyka kolejna wizyta                                         |
+|        13769 | Konsultacja telefoniczna - Endokrynologa                                                    |
+|        13770 | Konsultacja telefoniczna - Gastroenterologa                                                 |
+|        13772 | Konsultacja telefoniczna - Hematologa                                                       |
+|        13773 | Konsultacja telefoniczna - Hepatologiczna                                                   |
+|        13774 | Konsultacja telefoniczna - Immunologa                                                       |
+|        13775 | Konsultacja telefoniczna - Kardiologa                                                       |
+|        13776 | Konsultacja telefoniczna - Lekarza chorób zakaźnych                                         |
+|        13778 | Konsultacja telefoniczna - Nefrologa                                                        |
+|        13779 | Konsultacja telefoniczna - Neurologa                                                        |
+|        13781 | Konsultacja telefoniczna - Onkologa                                                         |
+|        13783 | Konsultacja telefoniczna - Pulmonologa                                                      |
+|        13784 | Konsultacja telefoniczna - Reumatologa                                                      |
+|        13786 | Konsultacja telefoniczna - Urologa                                                          |
+|        13787 | Konsultacja telefoniczna - Seksuologa kolejna wizyta                                        |
+|        13789 | Konsultacja telefoniczna - Fizjoterapeuty                                                   |
+|        13790 | Konsultacja telefoniczna - Chirurga ogólnego                                                |
+|        13791 | Konsultacja telefoniczna - Ginekologa                                                       |
+|        13792 | Konsultacja telefoniczna - Ortopedy                                                         |
+|        13793 | Konsultacja telefoniczna - Okulisty                                                         |
+|        13794 | Konsultacja telefoniczna - Laryngologa                                                      |
+|        13795 | Konsultacja telefoniczna - Ginekologa-endokrynologa                                         |
+|        13797 | Konsultacja telefoniczna - Położnej                                                         |
+|        13800 | Konsultacja telefoniczna - Stomatolog                                                       |
+|        13802 | Konsultacja telefoniczna - Logopedy kolejna wizyta                                          |
+|        13803 | Konsultacja telefoniczna - Chirurga naczyniowego                                            |
+|        13805 | Konsultacja telefoniczna - Neurochirurga                                                    |
+|        13806 | Konsultacja telefoniczna - Psychologa pierwszorazowa                                        |
+|        13810 | Pobranie krwi - i innych materiałów - Karta ciąży                                           |
+|        13817 | Konsultacja telefoniczna - Ginekologa - prowadzenie ciąży                                   |
+|        13833 | Konsultacja telefoniczna - Hipertensjologiczna                                              |
+|        13851 | Konsultacja telefoniczna - Seksuologa pierwszorazowa                                        |
+|        13857 | Konsultacja telefoniczna - Dietetyka pierwszorazowa                                         |
+|        13858 | Konsultacja telefoniczna - Logopedy pierwszorazowa                                          |
+|        13946 | Konsultacja telefoniczna - Alergologa dzieci                                                |
+|        13947 | Konsultacja telefoniczna - Chirurga dzieci                                                  |
+|        13948 | Konsultacja telefoniczna - Dermatologa dzieci                                               |
+|        13949 | Konsultacja telefoniczna - Dietetyka dzieci kolejna wizyta                                  |
+|        13950 | Konsultacja telefoniczna - Dietetyka dzieci pierwszorazowa                                  |
+|        13951 | Konsultacja telefoniczna - Endokrynologa dzieci                                             |
+|        13952 | Konsultacja telefoniczna - Gastroenterologa dzieci                                          |
+|        13953 | Konsultacja telefoniczna - Ginekologa dzieci                                                |
+|        13954 | Konsultacja telefoniczna - Immunologa dzieci                                                |
+|        13955 | Konsultacja telefoniczna - Kardiologa dzieci                                                |
+|        13956 | Konsultacja telefoniczna - Laryngologa dzieci                                               |
+|        13959 | Konsultacja telefoniczna - Nefrologa dzieci                                                 |
+|        13960 | Konsultacja telefoniczna - Neurologa dzieci                                                 |
+|        13961 | Konsultacja telefoniczna - Onkologa dzieci                                                  |
+|        13962 | Konsultacja telefoniczna - Ortopedy dzieci                                                  |
+|        13963 | Konsultacja telefoniczna - Okulisty dzieci                                                  |
+|        13964 | Konsultacja telefoniczna - Pediatryczna dzieci chore                                        |
+|        13966 | Konsultacja telefoniczna - Psychologa dzieci kolejna wizyta                                 |
+|        13967 | Konsultacja telefoniczna - Psychologa dzieci pierwszorazowa                                 |
+|        13968 | Konsultacja telefoniczna - Pulmonologa dzieci                                               |
+|        13969 | Konsultacja telefoniczna - Reumatologa dzieci                                               |
+|        13970 | Konsultacja telefoniczna - Urologa dzieci                                                   |
+|        13974 | Konsultacja telefoniczna - Internistyczna Centrum Leczenia Infekcji                         |
+|        13979 | Konsultacja Wideo - Psychiatry dzieci pierwszorazowa                                        |
+|        13980 | Konsultacja Wideo - Psychiatry dzieci kolejna wizyta                                        |
+|        13981 | Konsultacja Wideo - Psychiatry kolejna wizyta                                               |
+|        13982 | Konsultacja Wideo - Psychiatry pierwszorazowa                                               |
+|        13983 | Konsultacja Wideo - Psychiatry porada receptowa                                             |
+|        13985 | Konsultacja Wideo - Psychologa pierwszorazowa                                               |
+|        13986 | Konsultacja Wideo - Psychologa kolejna wizyta                                               |
+|        13987 | Konsultacja Wideo - Psychologa dzieci pierwszorazowa                                        |
+|        13988 | Konsultacja Wideo - Psychologa dzieci kolejna wizyta                                        |
+|        13992 | Konsultacja Wideo - Seksuologa kolejna wizyta                                               |
+|        13993 | Konsultacja Wideo - Seksuologa pierwszorazowa                                               |
+|        14004 | Konsultacja Wideo - Logopedy kolejna wizyta                                                 |
+|        14005 | Konsultacja Wideo - Logopedy pierwszorazowa                                                 |
+|        14006 | Konsultacja telefoniczna - Pediatryczna dzieci zdrowe                                       |
+|        14055 | Konsultacja pediatryczna - w gabinecie dzieci zdrowych szczepienia p/grypie                 |
+|        14057 | Konsultacja pediatryczna - w gabinecie dzieci zdrowych szczepienia ( inne niż p/grypie)     |
+|        14099 | Test COVID -19 - genetyczny met.  RT – PCR - wymaz                                          |
+|        14112 | Konsultacja telefoniczna - psychiatry kolejna wizyta                                        |
+|        14114 | Konsultacja telefoniczna - psychiatry dzieci kolejna wizyta                                 |
+|        14115 | Zaświadczenie + Test COVID - 19 - genetyczny met.  RT – PCR - wymaz                         |
+|        14116 | Test COVID -19 - antygenowy - wymaz z wynikiem w języku angielskim / niemieckim / polskim   |
+|        14188 | Konsultacja telefoniczna - Hematologa dzieci                                                |
+|        14265 | Profilaktyka 40 PLUS – pakiet badań NFZ                                                     |
+|        14266 | Pobranie krwi - i innych materiałów - nie na czczo                                          |
+|        14296 | Konsultacja fizjoterapeuty - Poradnia Bólu Pleców                                           |
+|        14297 | Porada pielęgniarki - ankieta poinfekcyjna                                                  |
+|        14317 | Cytologia szyjki macicy - na podłożu płynnym LBC (cienkowarstwowa)                          |
+|        14322 | Pozostawienie materiału do badania (mocz/kał)                                               |
+|        14344 | Wykonanie szczepienia - (+kwalifikacja) Szczepionka VAXIGRIP Tetra (p/grypie) dorośli       |
+|        14395 | Pozostawienie materiału do badania (mocz/kał) - dzieci                                      |
+|        14403 | Konsultacja pediatryczna - w gabinecie dzieci zdrowych patronażowa noworodka                |
+|        14438 | Test COVID -19 - antygenowy - szybki wymaz                                                  |
+|        14483 | Konsultacja pielęgniarki - dermatologiczna                                                  |
+|        14485 | Konsultacja ginekologa - prowadzenie ciąży - wizyta otwierająca                             |
+|        14568 | Konsultacja pielęgniarki - Centrum Leczenia Infekcji                                        |
+|        14585 | Konsultacja internistyczna - DPD                                                            |
++--------------+---------------------------------------------------------------------------------------------+
