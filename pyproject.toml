@@ -1,0 +1,61 @@
+[project]
+name = "luxmedsniper"
+version = "0.1.0"
+dependencies = [
+    "loguru>=0.7.3",
+    "pydantic>=2.12.5",
+    "pyyaml>=6.0.3",
+    "requests>=2.32.5",
+    "schedule>=1.2.2",
+]
+requires-python = ">=3.14"
+
+[tool.ruff]
+line-length = 119
+target-version = "py314"
+
+[tool.ruff.lint]
+select = [
+    "ALL",
+]
+
+ignore = [
+    "ANN001",   # Missing type annotation for function argument
+    "ANN201",   # Missing return type annotation for public function
+    "ANN202",   # Missing return type annotation for private function
+    "ANN204",   # Missing return type annotation for special method
+    "D100",     # Missing docstring in public module
+    "D101",     # Missing docstring in public class
+    "D102",     # Missing docstring in public method
+    "D103",     # Missing docstring in public function
+    "D107",     # Missing docstring in `__init__`
+    "D211",     # Incompatiblty with D203
+    "D213",     # Incompatiblty with D212
+]
+
+[tool.ruff.format]
+docstring-code-format = true
+
+# Like Black, use double quotes for strings.
+quote-style = "double"
+
+# Like Black, indent with spaces, rather than tabs.
+indent-style = "space"
+
+# Like Black, respect magic trailing commas.
+skip-magic-trailing-comma = true
+
+# Like Black, automatically detect the appropriate line ending.
+line-ending = "auto"
+
+[project.optional-dependencies]
+desktop = ["pygobject>=3.54.5"]
+pushbullet = ["pushbullet-py>=0.12.0"]
+slack = ["slack-sdk>=3.39.0"]
+telegram = ["telegram-send>=0.37"]
+all = [
+    "luxmedsniper[]",
+]
+
+[tool.pyrefly]
+ignore-missing-imports = ["gi.*", "pushbullet.*", "telegram_send.*"]
