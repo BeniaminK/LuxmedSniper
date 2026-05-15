@@ -13,7 +13,7 @@ luxmedsniper:
       enabled: True
   lookup_time_days: 14 # How many days from now should script look at.
   facilities_ids: []
-  notification_provider: # console, console_async, slack, pushover, pushbullet, gi, telegram
+  notification_provider: # console, console_async, slack, pushover, pushbullet, notify, telegram
     - telegram
 pushover:
   user_key: # Your pushover.net user key

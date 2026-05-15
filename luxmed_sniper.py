@@ -46,7 +46,7 @@ class DoctorLocator(BaseModel):
             city_id, service_id, clinic_ids_str, doctor_ids_str = raw_id.split("*")
         except ValueError as e:
             raise ValueError(
-                "doctor_locator.id must have format: cityId*serviceId*facilitiesIds*doctorsIds (example: 1*7409*-1*-1)"
+                "doctor_locator.id must have format: cityId*serviceId*facilitiesIds*doctorsIds (example: 1*7409*-1*-1)",
             ) from e
 
         def _parse_ids(s: str) -> list[int]:
@@ -192,8 +192,8 @@ class LuxMedSniper:
             channel = self.config["slack"]["channel"]
             notification_providers.append(
                 lambda doctor_locator, appointment: client.chat_postMessage(
-                    channel=channel, text=self.config["slack"]["message_template"].format(vars(appointment))
-                )
+                    channel=channel, text=self.config["slack"]["message_template"].format(vars(appointment)),
+                ),
             )
         if "pushbullet" in providers:
             from pushbullet import Pushbullet  # noqa: PLC0415
@@ -204,7 +204,7 @@ class LuxMedSniper:
                 lambda doctor_locator, appointment: pb.push_note(
                     title=self.config["pushbullet"]["title"],
                     body=self.config["pushbullet"]["message_template"].format_map(vars(appointment)),
-                )
+                ),
             )
         if "ntfy" in providers:
 
@@ -217,19 +217,20 @@ class LuxMedSniper:
                 )
 
             notification_providers.append(ntfy_callback)
-        if "gi" in providers:
-            import gi  # noqa: PLC0415
-
-            gi.require_version("Notify", "0.7")
-            from gi.repository import Notify  # noqa: PLC0415
+        if "notify" in providers:
+            from notifypy import Notify  # noqa: PLC0415
 
             # One time initialization of libnotify
-            Notify.init("Luxmed Sniper")
-            notification_providers.append(
-                lambda doctor_locator, appointment: Notify.Notification.new(
-                    self.config["gi"]["message_template"].format_map(vars(appointment)), None
-                ).show()
-            )
+            notification = Notify()
+            notification.application_name = "Luxmed Sniper"
+            notification.title = "Appointment Found"
+            notification.icon = "assets/icon_64.png"
+
+            def cb(_, appointment):
+                notification.message = self.config["notify"]["message_template"].format_map(vars(appointment))
+                notification.send()
+
+            notification_providers.append(cb)
         if "telegram" in providers:
             from telegram_send import send as t_send  # noqa: PLC0415
 
@@ -237,26 +238,26 @@ class LuxMedSniper:
                 lambda doctor_locator, appointment: t_send(
                     messages=[self.config["telegram"]["message_template"].format_map(vars(appointment))],
                     conf=self.config["telegram"]["tele_conf_path"],
-                )
+                ),
             )
         if "sound" in providers:
             audio_file = Path(self.config["sound"]["audio"])
 
             def cb(_, __):
-                subprocess.check_output(["/usr/bin/aplay", audio_file], shell=False, stderr=subprocess.STDOUT)  # noqa: S603
+                subprocess.check_output(["/usr/bin/paplay", audio_file], shell=False, stderr=subprocess.STDOUT)  # noqa: S603
 
             notification_providers.append(cb)
         if "console" in providers:
             notification_providers.append(
                 lambda doctor_locator, appointment: print(
-                    self._format_message(self.config["console"]["message_template"], doctor_locator, appointment)
-                )
+                    self._format_message(self.config["console"]["message_template"], doctor_locator, appointment),
+                ),
             )
         if "console_async" in providers:
 
             async def async_console_notification(doctor_locator, appointment):
                 print(
-                    self._format_message(self.config["console_async"]["message_template"], doctor_locator, appointment)
+                    self._format_message(self.config["console_async"]["message_template"], doctor_locator, appointment),
                 )
 
             notification_providers.append(async_console_notification)
@@ -267,7 +268,7 @@ class LuxMedSniper:
         luxmed = Luxmed(**self.config["luxmed"])
         json_data = {"login": luxmed.login, "password": luxmed.password}
         response = self.session.post(
-            url=LuxMedSniper.LUXMED_LOGIN_URL, json=json_data, headers={"Content-Type": "application/json"}
+            url=LuxMedSniper.LUXMED_LOGIN_URL, json=json_data, headers={"Content-Type": "application/json"},
         )
         logger.debug("Login response: {}.\nLogin cookies: {}", response.text, response.cookies)
         if response.status_code != requests.codes["ok"]:
@@ -300,13 +301,13 @@ class LuxMedSniper:
                 appointments.append(
                     Appointment(
                         datetime.datetime.fromisoformat(term["dateTimeFrom"]).replace(
-                            tzinfo=ZoneInfo("Europe/Warsaw")
+                            tzinfo=ZoneInfo("Europe/Warsaw"),
                         ),
                         term["clinicId"],
                         term["clinic"],
                         f"{doctor['academicTitle']} {doctor['firstName']} {doctor['lastName']}",
                         term["serviceId"],
-                    )
+                    ),
                 )
         return appointments
 
@@ -341,7 +342,7 @@ class LuxMedSniper:
             *filter(
                 lambda appointment: appointment.AppointmentDate <= date_to,
                 LuxMedSniper._parse_visits_new_portal(response, doctor_locator),
-            )
+            ),
         ]
 
     def _add_to_database(self, appointment: Appointment) -> None:
@@ -394,7 +395,7 @@ class LuxMedSniper:
         doctor_locator_dict: dict[str, Any]
         for doctor_locator_dict in self.config["luxmedsniper"]["doctor_locators"]:
             doctor_locator = DoctorLocator.model_validate(
-                doctor_locator_dict, context={"luxmedsniper_config": self.config["luxmedsniper"]}
+                doctor_locator_dict, context={"luxmedsniper_config": self.config["luxmedsniper"]},
             )
 
             if not doctor_locator.enabled:
@@ -408,16 +409,16 @@ class LuxMedSniper:
                 for appointment in appointments:
                     logger.info(
                         "Appointment found for: {app_name}! {AppointmentDate} at {ClinicPublicName} - {DoctorName}".format(
-                            **appointment.__dict__, app_name=doctor_locator.name
-                        )
+                            **appointment.__dict__, app_name=doctor_locator.name,
+                        ),
                     )
                     if not self._is_already_known(appointment):
                         self._add_to_database(appointment)
                         self._send_notification(doctor_locator, appointment)
                         logger.info(
                             "Notification sent for: {app_name}! {AppointmentDate} at {ClinicPublicName} - {DoctorName}".format(
-                                **appointment.__dict__, app_name=doctor_locator.name
-                            )
+                                **appointment.__dict__, app_name=doctor_locator.name,
+                            ),
                         )
                     else:
                         logger.info(f"Notification was already sent for: {doctor_locator.name}")
@@ -426,13 +427,13 @@ class LuxMedSniper:
 
     def get_cities(self) -> list[dict]:
         response = self.session.get(
-            url=LuxMedSniper.DICTIONARY_CITIES_URL, headers={"Content-Type": "application/json"}
+            url=LuxMedSniper.DICTIONARY_CITIES_URL, headers={"Content-Type": "application/json"},
         )
         return response.json()
 
     def get_services(self) -> list[dict]:
         response = self.session.get(
-            url=LuxMedSniper.DICTIONARY_SERVICES_URL, headers={"Content-Type": "application/json"}
+            url=LuxMedSniper.DICTIONARY_SERVICES_URL, headers={"Content-Type": "application/json"},
         )
         return response.json()
 
