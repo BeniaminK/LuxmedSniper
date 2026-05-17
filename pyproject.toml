@@ -21,10 +21,7 @@ select = [
 ]
 
 ignore = [
-    "ANN001",   # Missing type annotation for function argument
-    "ANN201",   # Missing return type annotation for public function
-    "ANN202",   # Missing return type annotation for private function
-    "ANN204",   # Missing return type annotation for special method
+    "ANN401",   # Dynamically typed expressions (typing.Any) are disallowed
     "D100",     # Missing docstring in public module
     "D101",     # Missing docstring in public class
     "D102",     # Missing docstring in public method
@@ -41,9 +38,6 @@ telegram = ["telegram-send>=0.37"]
 all = [
     "luxmedsniper[]",
 ]
-
-[tool.pyrefly]
-ignore-missing-imports = ["pushbullet.*", "telegram_send.*"]
 
 [dependency-groups]
 dev = [

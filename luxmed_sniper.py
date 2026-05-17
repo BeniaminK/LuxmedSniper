@@ -21,7 +21,7 @@ import requests
 import schedule
 import yaml
 from loguru import logger
-from pydantic import BaseModel, Field, model_validator
+from pydantic import BaseModel, Field, ValidationInfo, model_validator
 
 if TYPE_CHECKING:
     from collections.abc import Callable, Iterable
@@ -41,7 +41,7 @@ class DoctorLocator(BaseModel):
 
     @model_validator(mode="before")
     @classmethod
-    def _parse_from_id_and_config(cls, data: Any, info):
+    def _parse_from_id_and_config(cls, data: Any, info: ValidationInfo) -> Any:
         if not isinstance(data, dict):
             return data
 
@@ -128,7 +128,7 @@ class LuxMedSniper:
     DICTIONARY_SERVICES_URL = f"{DICTIONARY_URL}/serviceVariantsGroups"
     DICTIONARY_FACILITIES_AND_DOCTORS = f"{DICTIONARY_URL}/facilitiesAndDoctors"
 
-    def __init__(self, configuration_files: typing.Iterable[str] = tuple("luxmed_sniper.yaml")):
+    def __init__(self, configuration_files: typing.Iterable[str] = tuple("luxmed_sniper.yaml")) -> None:
         logger.info("LuxMedSniper logger initialized")
 
         self.config = LuxMedSniper._load_configuration(configuration_files)
@@ -215,7 +215,7 @@ class LuxMedSniper:
             )
         if "ntfy" in providers:
 
-            def ntfy_callback(_, appointment):
+            def ntfy_callback(_: DoctorLocator, appointment: Appointment) -> None:
                 requests.post(
                     f"https://ntfy.sh/{self.config['ntfy']['topic']}",
                     data=self.config["ntfy"]["message_template"].format_map(vars(appointment)),
@@ -233,7 +233,7 @@ class LuxMedSniper:
             notification.title = "Appointment Found"
             notification.icon = "assets/icon_64.png"
 
-            def cb(_, appointment):
+            def cb(_: DoctorLocator, appointment: Appointment) -> None:
                 notification.message = self.config["notify"]["message_template"].format_map(vars(appointment))
                 notification.send()
 
@@ -250,7 +250,7 @@ class LuxMedSniper:
         if "sound" in providers:
             audio_file = Path(self.config["sound"]["audio"])
 
-            def cb(_, __):
+            def cb(_: DoctorLocator, __: Appointment) -> None:
                 subprocess.check_output(["/usr/bin/paplay", audio_file], shell=False, stderr=subprocess.STDOUT)  # noqa: S603
 
             notification_providers.append(cb)
@@ -262,7 +262,7 @@ class LuxMedSniper:
             )
         if "console_async" in providers:
 
-            async def async_console_notification(doctor_locator, appointment):
+            async def async_console_notification(doctor_locator: DoctorLocator, appointment: Appointment) -> None:
                 print(
                     self._format_message(
                         self.config["console_async"]["message_template"],
