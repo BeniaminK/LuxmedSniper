@@ -256,14 +256,14 @@ class LuxMedSniper:
             notification_providers.append(cb)
         if "console" in providers:
             notification_providers.append(
-                lambda doctor_locator, appointment: print(
+                lambda doctor_locator, appointment: print(  # noqa: T201
                     self._format_message(self.config["console"]["message_template"], doctor_locator, appointment),
                 ),
             )
         if "console_async" in providers:
 
             async def async_console_notification(doctor_locator: DoctorLocator, appointment: Appointment) -> None:
-                print(
+                print(  # noqa: T201
                     self._format_message(
                         self.config["console_async"]["message_template"],
                         doctor_locator,
@@ -401,7 +401,7 @@ class LuxMedSniper:
                 result = provider(doctor_locator, appointment)
                 if result is not None and asyncio.iscoroutine(result) is True:
                     asyncio.run(result)
-            except Exception as e:
+            except Exception as e:  # noqa: BLE001
                 logger.exception(f"Sending notification failed, reason: {e}")
 
     def check(self) -> None:
@@ -432,14 +432,15 @@ class LuxMedSniper:
                         self._add_to_database(appointment)
                         self._send_notification(doctor_locator, appointment)
                         logger.info(
-                            "Notification sent for: {app_name}! {AppointmentDate} at {ClinicPublicName} - {DoctorName}".format(
+                            "Notification sent for: {app_name}! "
+                            "{AppointmentDate} at {ClinicPublicName} - {DoctorName}".format(
                                 **appointment.__dict__,
                                 app_name=doctor_locator.name,
                             ),
                         )
                     else:
                         logger.info(f"Notification was already sent for: {doctor_locator.name}")
-            except Exception as e:
+            except (requests.RequestException, LuxmedSniperError, json.JSONDecodeError, KeyError, ValueError) as e:
                 logger.exception(f"Looking for appointments for {doctor_locator} failed, reason: {e}")
 
     def get_cities(self) -> list[dict]:
