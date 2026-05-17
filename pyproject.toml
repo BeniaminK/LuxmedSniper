@@ -30,24 +30,9 @@ ignore = [
     "D102",     # Missing docstring in public method
     "D103",     # Missing docstring in public function
     "D107",     # Missing docstring in `__init__`
-    "D211",     # Incompatiblty with D203
-    "D213",     # Incompatiblty with D212
+    "D203",     # 1 blank line required before class docstring (conflicts with D211)
+    "D213",     # Multi-line docstring summary should start at the second line
 ]
-
-[tool.ruff.format]
-docstring-code-format = true
-
-# Like Black, use double quotes for strings.
-quote-style = "double"
-
-# Like Black, indent with spaces, rather than tabs.
-indent-style = "space"
-
-# Like Black, respect magic trailing commas.
-skip-magic-trailing-comma = true
-
-# Like Black, automatically detect the appropriate line ending.
-line-ending = "auto"
 
 [project.optional-dependencies]
 pushbullet = ["pushbullet-py>=0.12.0"]

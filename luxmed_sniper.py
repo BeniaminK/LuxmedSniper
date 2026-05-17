@@ -11,11 +11,10 @@ import sys
 import time
 import typing
 import uuid
-from collections.abc import Callable, Iterable
 from dataclasses import dataclass
 from fnmatch import fnmatch
 from pathlib import Path
-from typing import Any
+from typing import TYPE_CHECKING, Any
 from zoneinfo import ZoneInfo
 
 import requests
@@ -23,6 +22,11 @@ import schedule
 import yaml
 from loguru import logger
 from pydantic import BaseModel, Field, model_validator
+
+if TYPE_CHECKING:
+    from collections.abc import Callable, Iterable
+
+    from loguru import BasicHandlerConfig, FileHandlerConfig
 
 
 class DoctorLocator(BaseModel):
@@ -192,7 +196,8 @@ class LuxMedSniper:
             channel = self.config["slack"]["channel"]
             notification_providers.append(
                 lambda doctor_locator, appointment: client.chat_postMessage(
-                    channel=channel, text=self.config["slack"]["message_template"].format(vars(appointment)),
+                    channel=channel,
+                    text=self.config["slack"]["message_template"].format(vars(appointment)),
                 ),
             )
         if "pushbullet" in providers:
@@ -257,7 +262,11 @@ class LuxMedSniper:
 
             async def async_console_notification(doctor_locator, appointment):
                 print(
-                    self._format_message(self.config["console_async"]["message_template"], doctor_locator, appointment),
+                    self._format_message(
+                        self.config["console_async"]["message_template"],
+                        doctor_locator,
+                        appointment,
+                    ),
                 )
 
             notification_providers.append(async_console_notification)
@@ -268,7 +277,9 @@ class LuxMedSniper:
         luxmed = Luxmed(**self.config["luxmed"])
         json_data = {"login": luxmed.login, "password": luxmed.password}
         response = self.session.post(
-            url=LuxMedSniper.LUXMED_LOGIN_URL, json=json_data, headers={"Content-Type": "application/json"},
+            url=LuxMedSniper.LUXMED_LOGIN_URL,
+            json=json_data,
+            headers={"Content-Type": "application/json"},
         )
         logger.debug("Login response: {}.\nLogin cookies: {}", response.text, response.cookies)
         if response.status_code != requests.codes["ok"]:
@@ -395,7 +406,8 @@ class LuxMedSniper:
         doctor_locator_dict: dict[str, Any]
         for doctor_locator_dict in self.config["luxmedsniper"]["doctor_locators"]:
             doctor_locator = DoctorLocator.model_validate(
-                doctor_locator_dict, context={"luxmedsniper_config": self.config["luxmedsniper"]},
+                doctor_locator_dict,
+                context={"luxmedsniper_config": self.config["luxmedsniper"]},
             )
 
             if not doctor_locator.enabled:
@@ -409,7 +421,8 @@ class LuxMedSniper:
                 for appointment in appointments:
                     logger.info(
                         "Appointment found for: {app_name}! {AppointmentDate} at {ClinicPublicName} - {DoctorName}".format(
-                            **appointment.__dict__, app_name=doctor_locator.name,
+                            **appointment.__dict__,
+                            app_name=doctor_locator.name,
                         ),
                     )
                     if not self._is_already_known(appointment):
@@ -417,7 +430,8 @@ class LuxMedSniper:
                         self._send_notification(doctor_locator, appointment)
                         logger.info(
                             "Notification sent for: {app_name}! {AppointmentDate} at {ClinicPublicName} - {DoctorName}".format(
-                                **appointment.__dict__, app_name=doctor_locator.name,
+                                **appointment.__dict__,
+                                app_name=doctor_locator.name,
                             ),
                         )
                     else:
@@ -427,13 +441,15 @@ class LuxMedSniper:
 
     def get_cities(self) -> list[dict]:
         response = self.session.get(
-            url=LuxMedSniper.DICTIONARY_CITIES_URL, headers={"Content-Type": "application/json"},
+            url=LuxMedSniper.DICTIONARY_CITIES_URL,
+            headers={"Content-Type": "application/json"},
         )
         return response.json()
 
     def get_services(self) -> list[dict]:
         response = self.session.get(
-            url=LuxMedSniper.DICTIONARY_SERVICES_URL, headers={"Content-Type": "application/json"},
+            url=LuxMedSniper.DICTIONARY_SERVICES_URL,
+            headers={"Content-Type": "application/json"},
         )
         return response.json()
 
@@ -474,10 +490,19 @@ def setup_logging() -> None:
     requests_log.setLevel(logging.DEBUG)
     requests_log.propagate = True
 
-    handlers = [
-        dict(sink=sys.stdout, level=os.environ.get("LOGURU_LEVEL", "INFO")),
-        dict(sink="debug.log", format="{time} - {message}", serialize=True, rotation="1 week"),
+    handlers: list[BasicHandlerConfig | FileHandlerConfig] = [
+        {
+            "sink": sys.stdout,
+            "level": os.environ.get("LOGURU_LEVEL", "INFO"),
+        },
+        {
+            "sink": "debug.log",
+            "format": "{time} - {message}",
+            "serialize": True,
+            "rotation": "1 week",
+        },
     ]
+
     logger.configure(handlers=handlers)
 
 
